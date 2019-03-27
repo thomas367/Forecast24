@@ -17,5 +17,10 @@
 </script>
 
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Architects Daughter');
+
+  #app{
+    font-family: 'Architects Daughter';
+  }
 
 </style>
