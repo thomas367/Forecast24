@@ -5,11 +5,11 @@ export default class ForecastData{
 		this.api = 'weather'
 		this.apiKey = 'e5cdbd515249b28526ac579afe58f4fa'
 		this.query = 'q='
-		this.apiUrl = '${this.baseUrl}${this.api}?${this.query}&APPID=${this.apiKey}&units=metric';
+		this.apiUrl = this.baseUrl+this.api+'?'+this.query+'&APPID='+this.apiKey+'&units=metric';
 	}
 
 	rebuildApiUrl(){
-		this.apiUrl = '${this.baseUrl}${this.api}?${this.query}&APPID=${this.apiKey}&units=metric';
+		this.apiUrl = this.baseUrl+this.api+'?'+this.query+'&APPID='+this.apiKey+'&units=metric';
 	}
 
 	currentWeather(city){

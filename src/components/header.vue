@@ -7,7 +7,7 @@
 			<p class="subtitle">
 				Find weather info for a city
 			</p>
-			<b-form @submit.prevent="onSearch">
+			<b-form @submit.prevent="getWeatherData">
 				<div class="input d-inline-flex">
 					<b-form-input size="md" type="text" placeholder="Search..." v-model="city"/>
 			        <b-button size="md" type="submit" variant="primary">Search</b-button>
@@ -18,13 +18,31 @@
 </template>
 
 <script>
+	import axios from 'axios'
+	import ServicesMixin from '../mixin/servicesMixin.js'
+
 	export default{
 		data: function(){
 			return {
-				city: ''
+				city: 'Thessaloniki'
+			}
+		},
+		mixins: [ServicesMixin],
+		created(){
+			this.getWeatherData(this.city);
+        	this.$bus.emit('search-location', this.city);
+		},
+		methods: {
+			/* Get current weather data */
+			getWeatherData: function(){
+				this.$bus.emit('search-location', this.city);
+            	axios.get(this.urlWeather(this.city))
+                .then((response) => {
+                	console.log(response.data);
+                    this.$bus.emit('weather-found', response.data);
+                })
 			}
 		}
-
 	}
 </script>
 
@@ -53,6 +71,4 @@
 			}
 		}
 	}
-
-
 </style>
