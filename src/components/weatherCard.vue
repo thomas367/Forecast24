@@ -81,6 +81,9 @@
 <style scoped lang="scss">
 	.weather-card{
 		margin-bottom: 10px;
+		padding: 10px;
+		border: 1px solid #cccccc;
+		border-radius: 5px;
 
 	}
 
