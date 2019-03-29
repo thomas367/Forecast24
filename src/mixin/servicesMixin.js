@@ -6,6 +6,9 @@ export default{
 	methods: {
 		urlWeather: function(city){
 			return forecastDataObj.currentWeather(city);
+		},
+		urlForecast: function(city){
+			return forecastDataObj.weekForecast(city);
 		}
 	}
 }

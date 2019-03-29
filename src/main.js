@@ -14,3 +14,14 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+ function containsObjProperty(obj, prop, list){
+  for (var i = 0; i < list.length; i++) {
+      if (list[i][prop] === obj[prop]) {
+          return true;
+      }
+  }
+
+  return false;
+} 
+Array.prototype.containsObjProperty = containsObjProperty;

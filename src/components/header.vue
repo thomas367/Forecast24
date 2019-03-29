@@ -33,14 +33,19 @@
         	this.$bus.emit('search-location', this.city);
 		},
 		methods: {
-			/* Get current weather data */
+			/* Get current weather and 5 days forecast data */
 			getWeatherData: function(){
 				this.$bus.emit('search-location', this.city);
             	axios.get(this.urlWeather(this.city))
-                .then((response) => {
-                	console.log(response.data);
+                .then(response => {
+                	//console.log(response.data);
                     this.$bus.emit('weather-found', response.data);
-                })
+                });
+                axios.get(this.urlForecast(this.city))
+                .then(response =>{
+                	//console.log(response.data);
+                	this.$bus.emit('forecast-found', response.data);
+                });
 			}
 		}
 	}
