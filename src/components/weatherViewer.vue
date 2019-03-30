@@ -17,34 +17,19 @@
 		        </p>
 		    </div>    	        
 	        <div class="row">
-	            <div class="col-3 content">
+	            <div class="col-sm-3 col-6 content">
 	                <p class="category">Current Temperature</p>
 	                <p class="value">{{ main.temp }} °C</p>
 	            </div>
-	            <div class="col-3 content">
-	                <p class="category">Min Temperature</p>
-	                <p class="value">{{ main.temp_min }} °C</p>
-	            </div>
-	            <div class="col-3 content">
-	                <p class="category">Max Temperature</p>
-	                <p class="value">{{ main.temp_max }} °C</p>
-	            </div>
-	            <div class="col-3 content">
+	            <div class="col-sm-3 col-6 content">
 	                <p class="category">Humidity</p>
 	                <p class="value">{{ main.humidity }} %</p>
 	            </div>
-	        </div>
-	        <hr>
-	        <div class="row">
-	            <div class="col-4 content">
-	                <p class="category">Current pressure</p>
-	                <p class="value">{{ main.pressure }} hPa</p>
-	            </div>
-	            <div class="col-4 content">
+	            <div class="col-sm-3 col-6 content">
 	                <p class="category">Wind speed</p>
 	                <p class="value">{{ wind.speed }} m/s</p>
 	            </div>
-	            <div class="col-4 content">
+	            <div class="col-sm-3 col-6 content">
 	                <p class="category">Wind direction</p>
 	                <p class="value">{{windDirection(wind.deg)}}</p>
 	            </div>
@@ -58,17 +43,12 @@
         <!-- Date filter -->
         <div class="filterDate">
 	        <p>Filter by date</p>
-	        <div class="tabs">
-	        	<ul>
-	        		<span v-for="(date, index) in forecastDates">
-	        			<li :class="{'is-active': date.isActive}">
-	        				<a href="#" @click.prevent="filterByDate(index)">
-	        					<span><!-- TODO: add calendar icon  --></span> 
-	        					<span>{{date.date}}</span>
-	        				</a>
-	        			</li>
-	        		</span>
-	        	</ul>
+	        <div class="scrollbar">
+		        <b-button-group size="md" class="filter">
+			        <b-button v-for="(date, index) in forecastDates" :key="index" @click.prevent="filterByDate(index)" variant="outline-primary">				      
+				    	<span>{{date.date}}</span>   
+			        </b-button>
+		        </b-button-group>
 	        </div>
 	    </div>
 	    <div v-for="(weatherItem, index) in forecastListByDate">
@@ -82,40 +62,25 @@
 			            <br>
 			            <span>{{ weatherItem.weather[0].description }}</span>
 			        </p>
-			        <div class="time offset-3 col-3">
-			        	<!-- <span class="icon"> TODO: Add watch icon.</span>  -->
+			        <div class="time offset-2 col-3 row">
+			        	<span><ios-clock-icon/></span>
 	       				<span>{{ convertTime(weatherItem.dt_txt) }}</span>
 			        </div>
 			    </div>       
 		        <div class="row">
-		            <div class="col-3 content">
+		            <div class="col-sm-3 col-6 content">
 		                <p class="category">Temperature</p>
 		                <p class="value">{{ weatherItem.main.temp }} °C</p>
 		            </div>
-		            <div class="col-3 content">
-		                <p class="category">Min Temperature</p>
-		                <p class="value"> °C</p>
-		            </div>
-		            <div class="col-3 content">
-		                <p class="category">Max Temperature</p>
-		                <p class="value"> °C</p>
-		            </div>
-		            <div class="col-3 content">
+		            <div class="col-sm-3 col-6 content">
 		                <p class="category">Humidity</p>
 		                <p class="value">{{ weatherItem.main.humidity }} %</p>
 		            </div>
-		        </div>
-		        <hr>
-		        <div class="row">
-		            <div class="col-4 content">
-		                <p class="category">Current pressure</p>
-		                <p class="value">{{ weatherItem.main.pressure }} hPa</p>
-		            </div>
-		            <div class="col-4 content">
+		            <div class="col-sm-3 col-6 content">
 		                <p class="category">Wind speed</p>
 		                <p class="value">{{ weatherItem.wind.speed }} m/s</p>
 		            </div>
-		            <div class="col-4 content">
+		            <div class="col-sm-3 col-6 content">
 		                <p class="category">Wind direction</p>
 		                <p class="value">{{ windDirection(weatherItem.wind.deg) }}</p>
 		            </div>
@@ -219,7 +184,7 @@
 				return 'N'
 			},
 			convertTime: function(time){
-				return dateFormat('hh:mm:ss', new Date(time));
+				return dateFormat('hh:mm', new Date(time));
 			}
 		} 
 	}
@@ -234,8 +199,17 @@
 
 	}
 
+	.scrollbar{
+		overflow: auto;
+		width: auto;
+	}
+
 	.filterDate{
-		justify-content: center;
+		text-align: center;
+
+		.filter{
+			margin-bottom: 10px;
+		}
 
 	}
 
@@ -257,5 +231,4 @@
 		text-align: center;
 
 	}
-	
 </style>

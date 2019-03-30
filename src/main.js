@@ -3,7 +3,9 @@ import App from './App.vue'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import VueBus from 'vue-bus'
+import VueIonicons from 'vue-ionicons/dist/ionicons-ios.js'
 
+Vue.use(VueIonicons)
 Vue.use(VueBus)
 Vue.use(BootstrapVue)
 import 'bootstrap/dist/css/bootstrap.css'
