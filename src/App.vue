@@ -3,7 +3,7 @@
     <header-app/>
     <section class="section">
       <div class="container">
-        <weather-data :location="location" v-if="location"></weather-data>
+        <weather-viewer :location="location" v-if="location"></weather-viewer>
         <div v-else>
           <p>Search for a location...</p>
         </div>
@@ -14,13 +14,13 @@
 
 <script>
   import Header from './components/header.vue'
-  import WeatherData from './components/weatherData.vue'
+  import weatherViewer from './components/weatherViewer.vue'
 
   export default {
     name: 'app',
     components: {
       'header-app': Header,
-      'weather-data': WeatherData
+      'weather-viewer': weatherViewer
     },
     data(){
       return{
