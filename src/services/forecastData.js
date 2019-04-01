@@ -11,7 +11,7 @@ export default class ForecastData{
 	rebuildApiUrl(){
 		this.apiUrl = this.baseUrl+this.api+'?'+this.query+'&APPID='+this.apiKey+'&units=metric';
 	}
-
+	/* Weather services by search */
 	currentWeather(city){
 		this.query = 'q=' + city
 		this.api = 'weather'
@@ -22,6 +22,23 @@ export default class ForecastData{
 
 	weekForecast(city){
 		this.query = 'q=' + city
+		this.api = 'forecast'
+		this.rebuildApiUrl();
+
+		return this.apiUrl;
+	}
+
+	/* Weather services by geolocation */
+	currentWeatherGeolocation(lat, lon){
+		this.query = 'lat=' + lat + '&lon=' + lon
+		this.api = 'weather'
+		this.rebuildApiUrl();
+
+		return this.apiUrl;
+	}
+
+	weekForecastGeolocation(lat, lon){
+		this.query = 'lat=' + lat + '&lon=' + lon
 		this.api = 'forecast'
 		this.rebuildApiUrl();
 

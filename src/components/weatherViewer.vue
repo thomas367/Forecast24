@@ -95,7 +95,7 @@
 
 	export default{
 		props: ['location'],
-		data(){
+		data: function(){
 			return{
 				weather: {},
 				main: {},
@@ -107,7 +107,7 @@
 				selectedDate: ''
 			}
 		},
-		created(){
+		created: function(){
 			/* Set current weather data */
 			this.$bus.on('weather-found', data =>{
 				const mainData = data;
@@ -149,7 +149,6 @@
                        		this.forecastDates.push(forecastDate);
                     	}  
 					})
-					console.log(forecasts)
 					return forecasts
 				}
 				return [];
